@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace DefaultNamespace
         [SerializeField] private RectTransform heartParent;
         [SerializeField] private Image heart;
         [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private Image glow;
 
         private int m_hp = 3;
 
@@ -23,6 +25,11 @@ namespace DefaultNamespace
             }
         }
 
+        private void Start()
+        {
+            //Glow();
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -31,7 +38,7 @@ namespace DefaultNamespace
             }
         }
 
-        void AddHp()
+        public void AddHp()
         {
             life++;
             heartParent.DOScale(1.2f, 0.175f)
@@ -42,6 +49,13 @@ namespace DefaultNamespace
         {
             text.text = $"x{life}";
         }
+
+        /*void Glow()
+        {
+            glow.DOColor(1.2f, 0.175f).OnComplete(() => glow.rectTransform.DOScale(1, 0.125f))
+                .OnComplete((() => Glow()));
+        }*/
     }
+    
    
 }
